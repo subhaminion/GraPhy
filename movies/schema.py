@@ -13,6 +13,7 @@ class MovieType(DjangoObjectType):
         model = Movie
         filter_fields = {
             'title': ['exact', 'icontains', 'istartswith'],
+            'actors': ['exact', 'icontains', 'istartswith'],
             'genre': ['exact', 'icontains'],
             'year': ['exact', 'gt', 'lt'],
         }
@@ -45,19 +46,24 @@ class MovieQuery(object):
     movie = graphene.Field(
         MovieType,
         id=graphene.String(),
-        title=graphene.String()
+        title=graphene.String(),
+        actors=graphene.String()
     )
     all_movies = DjangoFilterConnectionField(MovieType)
 
     def resolve_movie(self, info, **kwargs):
         id = kwargs.get('id')
         title = kwargs.get('title')
+        actors = kwargs.get('actors')
 
         if id is not None:
             return Movie.objects.get(pk=from_global_id(id)[-1])
 
         if title is not None:
             return Movie.objects.get(title=title)
+
+        if actors is not None:
+            return Movie.objects.get(actors=actors)
 
         return None
 

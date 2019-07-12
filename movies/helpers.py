@@ -2,7 +2,7 @@ import logging
 
 import requests
 
-from graph_test.settings import OMDB_API_TOKEN
+from main.settings import OMDB_API_TOKEN
 
 logger = logging.getLogger(__name__)
 

@@ -4,7 +4,7 @@ from django import test
 
 from graphene.test import Client
 
-from graph_test.schema import schema
+from main.schema import schema
 from movies.models import Movie
 
 
