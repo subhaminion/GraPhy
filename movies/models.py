@@ -22,28 +22,28 @@ class Movie(models.Model):
     metascore = models.IntegerField()
     imdb_rating = models.FloatField()
 
-    # def save(self, force_insert=False, force_update=False, using=None,
-    #          update_fields=None):
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
 
-    #     additional_data = get_movie_data_from_ombd(self.title)
+        additional_data = get_movie_data_from_ombd(self.title)
 
-    #     self.year = self.year or int(additional_data.get('year', 0))
-    #     self.rated = additional_data.get('rated', '')
-    #     self.released = datetime.datetime.strptime(additional_data.get('released', '01 Jan 1970'), '%d %b %Y').date()
-    #     self.runtime = additional_data.get('runtime', '')
-    #     self.genre = additional_data.get('genre', '')
-    #     self.director = additional_data.get('director', '')
-    #     self.writer = additional_data.get('writer', '')
-    #     self.actors = additional_data.get('actors', '')
-    #     self.plot = additional_data.get('plot', '')
-    #     self.language = additional_data.get('language', '')
-    #     self.country = additional_data.get('country', '')
-    #     self.awards = additional_data.get('awards', '')
-    #     self.metascore = int(additional_data.get('metascore', 0))
-    #     self.imdb_rating = float(additional_data.get('imdbrating', 0))
+        self.year = self.year or int(additional_data.get('year', 0))
+        self.rated = additional_data.get('rated', '')
+        self.released = datetime.datetime.strptime(additional_data.get('released', '01 Jan 1970'), '%d %b %Y').date()
+        self.runtime = additional_data.get('runtime', '')
+        self.genre = additional_data.get('genre', '')
+        self.director = additional_data.get('director', '')
+        self.writer = additional_data.get('writer', '')
+        self.actors = additional_data.get('actors', '')
+        self.plot = additional_data.get('plot', '')
+        self.language = additional_data.get('language', '')
+        self.country = additional_data.get('country', '')
+        self.awards = additional_data.get('awards', '')
+        self.metascore = int(additional_data.get('metascore', 0))
+        self.imdb_rating = float(additional_data.get('imdbrating', 0))
 
-    #     super(Movie, self).save(force_insert=force_insert, force_update=force_update, using=using,
-    #                             update_fields=update_fields)
+        super(Movie, self).save(force_insert=force_insert, force_update=force_update, using=using,
+                                update_fields=update_fields)
     
     def __str__(self):
         return self.title
